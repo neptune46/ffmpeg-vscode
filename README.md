@@ -19,7 +19,7 @@ Server = http://mirrors.ustc.edu.cn/msys2/mingw/x86_64
 Server = http://mirrors.ustc.edu.cn/msys2/msys/$arch
 ```
 ### c. set up **pacman** [proxy](https://stackoverflow.com/questions/29783065/msys2-pacman-cant-update-packages-through-corporate-firewall) (*Optional*)
-* open file
+* open file: **C:\msys64\etc\profile**
 * add below lines at the end of file
 ```
 export http_proxy=<myusername>:<mypassword>@proxy-host-name:8080
