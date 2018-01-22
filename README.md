@@ -2,7 +2,14 @@
 
 # 0. Reference
 
-
+* MSYS2: http://www.msys2.org/
+* pacman mirror: https://lug.ustc.edu.cn/wiki/mirrors/help/msys2
+* pacman proxy: https://stackoverflow.com/questions/29783065/msys2-pacman-cant-update-packages-through-corporate-firewall
+* FFmpeg: https://github.com/FFmpeg/FFmpeg
+* MinGW/FFmpeg installation guide: https://trac.ffmpeg.org/wiki/CompilationGuide/MinGW
+* VSCode: https://code.visualstudio.com/
+* C/C++ for VSCode: https://code.visualstudio.com/docs/languages/cpp
+* Using MinGW and Cygwin with Visual C++ and Open Folder: https://blogs.msdn.microsoft.com/vcblog/2017/07/19/using-mingw-and-cygwin-with-visual-cpp-and-open-folder/
 
 # 1. Prepare MinGW environment
 
