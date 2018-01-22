@@ -1,6 +1,7 @@
 # ffmpeg-vscode
 
 ## 1. Prepare MinGW environment
+
 ### a. download and install [MSYS2](http://www.msys2.org/) in default path
 ```
 C:\msys64
@@ -46,6 +47,7 @@ pacman -S make diffutils nasm yasm
 pacman -S mingw-w64-x86_64-gcc
 pacman -S mingw-w64-i686-gcc
 ```
+
 ## 2. Install Visual Studio Code
 
 ### a. download and install vscode from this [link](https://code.visualstudio.com/)
@@ -57,6 +59,26 @@ Code Navigation
 vscode-icons
 ```
 
-## 3. Get ffmpeg source code
-## 4. Build ffmpeg
-## 5. Debug ffmpeg code 
+## 3. Build ffmpeg
+
+### a. open mingw64 terminal
+```bash
+cd c:\msys64
+mingw64.exe
+```
+
+### b. get [ffmpeg source](https://github.com/FFmpeg/FFmpeg) code
+```bash
+cd ~
+git clone https://github.com/FFmpeg/FFmpeg.git
+```
+
+
+### b. locate ffmpeg source code folder in mingw64 terminal
+```bash
+cd ~/FFmpeg
+./configure
+make -j8
+```
+
+## 4. Debug ffmpeg code 
