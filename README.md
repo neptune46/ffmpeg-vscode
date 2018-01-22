@@ -47,6 +47,16 @@ pacman -S mingw-w64-x86_64-gcc
 pacman -S mingw-w64-i686-gcc
 ```
 ## 2. Install Visual Studio Code
+
+### a. download and install vscode from this [link](https://code.visualstudio.com/)
+### b. install vscode extensions
+```
+C/C++
+Code Outline
+Code Navigation
+vscode-icons
+```
+
 ## 3. Get ffmpeg source code
 ## 4. Build ffmpeg
 ## 5. Debug ffmpeg code 
