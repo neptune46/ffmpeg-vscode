@@ -94,4 +94,91 @@ cd ~/FFmpeg
 make -j8
 ```
 
-## 4. Debug ffmpeg code 
+#### d. below ffmpeg binaries will be generated at current folder
+```
+ffmpeg_g.exe
+ffmpeg.exe
+ffprobe_g.exe
+ffprobe.exe
+```
+
+## 4. Debug ffmpeg code
+
+#### a. open ffmpeg source code folder with vscode
+
+#### b. copy a video file **test.mp4**
+
+#### c. set vscode lauch.json
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ffmpeg_g.exe",
+            "args": [
+                "-hwaccel",
+                "dxva2",
+                "-i",
+                "test.mp4",
+                "tmp.yuv",
+                "-y"
+            ],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+        }
+    ]
+}
+```
+
+#### d. start vscode debug
+
+* switch vscode to **debug** pannel and click *Start Debugging* button
+* ffmpeg will break at entry of main() function
+* set a break point at **ff_dxva2_common_end_frame** in **dxva2.c**
+```c
+int ff_dxva2_common_end_frame(AVCodecContext *avctx, AVFrame *frame,
+                              const void *pp, unsigned pp_size,
+                              const void *qm, unsigned qm_size,
+                              int (*commit_bs_si)(AVCodecContext *,
+                                                  DECODER_BUFFER_DESC *bs,
+                                                  DECODER_BUFFER_DESC *slice))
+{
+    // ...
+
+#if CONFIG_D3D11VA
+    if (ff_dxva2_is_d3d11(avctx))
+        hr = ID3D11VideoContext_SubmitDecoderBuffers(D3D11VA_CONTEXT(ctx)->video_context,
+                                                     D3D11VA_CONTEXT(ctx)->decoder,
+                                                     buffer_count, buffer11);
+#endif
+#if CONFIG_DXVA2
+    if (avctx->pix_fmt == AV_PIX_FMT_DXVA2_VLD) {
+        DXVA2_DecodeExecuteParams exec = {
+            .NumCompBuffers     = buffer_count,
+            .pCompressedBuffers = buffer2,
+            .pExtensionData     = NULL,
+        };
+        hr = IDirectXVideoDecoder_Execute(DXVA2_CONTEXT(ctx)->decoder, &exec);
+    }
+#endif
+    if (FAILED(hr)) {
+        av_log(avctx, AV_LOG_ERROR, "Failed to execute: 0x%x\n", (unsigned)hr);
+        result = -1;
+    }
+}
+```
