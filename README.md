@@ -1,14 +1,14 @@
 # ffmpeg-vscode
 
-## 1. Prepare MinGW environment
+# 1. Prepare MinGW environment
 
-#### a. download and install [MSYS2](http://www.msys2.org/) in default path
+## a. download and install [MSYS2](http://www.msys2.org/) in default path
 
 ```
 C:\msys64
 ```
 
-#### b. set up **pacman** (msys2 package manager) [mirror](https://lug.ustc.edu.cn/wiki/mirrors/help/msys2) (*Optional*)
+## b. set up **pacman** (msys2 package manager) [mirror](https://lug.ustc.edu.cn/wiki/mirrors/help/msys2) (*Optional*)
 
 * edit **/etc/pacman.d/mirrorlist.mingw32**, add below line at the begining：
 ```
@@ -23,7 +23,7 @@ Server = http://mirrors.ustc.edu.cn/msys2/mingw/x86_64
 Server = http://mirrors.ustc.edu.cn/msys2/msys/$arch
 ```
 
-#### c. set up **pacman** [proxy](https://stackoverflow.com/questions/29783065/msys2-pacman-cant-update-packages-through-corporate-firewall) (*Optional*)
+## c. set up **pacman** [proxy](https://stackoverflow.com/questions/29783065/msys2-pacman-cant-update-packages-through-corporate-firewall) (*Optional*)
 
 * open file: **C:\msys64\etc\profile**
 * add below lines at the end of file
@@ -38,7 +38,7 @@ export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
 * note 1: **myusername** and **mypassword** can be optional
 * note 2: example of **proxy-host-name**: http://xxx.xxx.com
 
-#### d. update **pacman** database
+## d. update **pacman** database
 
 ```bash
 pacman -S -y -u
@@ -48,7 +48,7 @@ or
 pacman -Syu
 ```
 
-#### e. install neccessary tools for building ffmpeg
+## e. install neccessary tools for building ffmpeg
 
 ```bash
 pacman -S git 
@@ -57,11 +57,11 @@ pacman -S mingw-w64-x86_64-gcc
 pacman -S mingw-w64-i686-gcc
 ```
 
-## 2. Install Visual Studio Code
+# 2. Install Visual Studio Code
 
-#### a. download and install vscode from this [link](https://code.visualstudio.com/)
+## a. download and install vscode from this [link](https://code.visualstudio.com/)
 
-#### b. install vscode extensions
+## b. install vscode extensions
 
 ```
 C/C++
@@ -70,23 +70,23 @@ Code Navigation
 vscode-icons
 ```
 
-## 3. Build ffmpeg
+# 3. Build ffmpeg
 
-#### a. open mingw64 terminal
+## a. open mingw64 terminal
 
 ```bash
 cd c:\msys64
 mingw64.exe
 ```
 
-#### b. get [ffmpeg source](https://github.com/FFmpeg/FFmpeg) code
+## b. get [ffmpeg source](https://github.com/FFmpeg/FFmpeg) code
 
 ```bash
 cd ~
 git clone https://github.com/FFmpeg/FFmpeg.git
 ```
 
-#### c. locate ffmpeg source code folder in mingw64 terminal
+## c. locate ffmpeg source code folder in mingw64 terminal
 
 ```bash
 cd ~/FFmpeg
@@ -94,7 +94,7 @@ cd ~/FFmpeg
 make -j8
 ```
 
-#### d. below ffmpeg binaries will be generated at current folder
+## d. below ffmpeg binaries will be generated at current folder
 ```
 ffmpeg_g.exe
 ffmpeg.exe
@@ -102,13 +102,13 @@ ffprobe_g.exe
 ffprobe.exe
 ```
 
-## 4. Debug ffmpeg code
+# 4. Debug ffmpeg code
 
-#### a. open ffmpeg source code folder with vscode
+## a. open ffmpeg source code folder with vscode
 
-#### b. copy a video file **test.mp4**
+## b. copy a video file **test.mp4**
 
-#### c. set vscode lauch.json
+## c. set vscode lauch.json
 
 ```json
 {
@@ -145,7 +145,7 @@ ffprobe.exe
 }
 ```
 
-#### d. start vscode debug
+## d. start vscode debug
 
 * switch vscode to **debug** pannel and click *Start Debugging* button
 * ffmpeg will break at entry of main() function
