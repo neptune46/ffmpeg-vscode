@@ -101,7 +101,7 @@ git clone https://github.com/FFmpeg/FFmpeg.git
 
 ```bash
 cd ~/FFmpeg
-./configure
+./configure --enable-debug=3 --disable-optimizations
 make -j8
 ```
 
