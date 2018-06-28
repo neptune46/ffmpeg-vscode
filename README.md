@@ -104,6 +104,14 @@ cd ~/FFmpeg
 ./configure --enable-debug=3 --disable-optimizations
 make -j8
 ```
+build x264/x265 with ffmpeg
+```bash
+sudo apt install libx264-dev libx265-dev
+
+cd ~/FFmpeg
+./configure --enable-debug=3 --disable-optimizations --enable-libx264 --enable-libx265 --enable-gpl
+make -j8
+```
 
 ### d. below ffmpeg binaries will be generated at current folder
 ```
